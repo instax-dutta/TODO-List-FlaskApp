@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -35,6 +35,14 @@ def update(todo_id):
 def delete(todo_id):
     todo = Todo.query.get(todo_id)
     db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/edit/<int:todo_id>', methods=['POST'])
+def edit(todo_id):
+    todo = Todo.query.get(todo_id)
+    new_task = request.form.get('task')
+    todo.task = new_task
     db.session.commit()
     return redirect(url_for('index'))
 
