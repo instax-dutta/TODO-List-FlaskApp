@@ -23,7 +23,7 @@ A simple, dark-themed To-Do List web application built with Python and Flask. Th
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/instax-dutta/TODO-List-FlaskApp.git
+    git clone https://github.com/wizard-boy-yt/TO-DO-LIST-app.git
     cd TODO-List-FlaskApp
     ```
 
@@ -95,4 +95,4 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## Contact
 
-- GitHub: [Instax-Dutta](https://github.com/instax-dutta)
+- GitHub: [Soumyadeep](https://github.com/wizard-boy-yt)

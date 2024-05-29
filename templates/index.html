@@ -58,6 +58,7 @@
             background-color: #1e1e1e;
             border-radius: 5px;
             transition: transform 0.2s ease, background-color 0.3s ease;
+            flex-direction: column;
         }
         li:hover {
             transform: scale(1.02);
@@ -66,13 +67,17 @@
         li span {
             flex-grow: 1;
             margin-right: 10px;
+            font-size: large;
         }
         li form {
             display: inline;
         }
         .buttons {
-            display: flex;
             gap: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
         }
         .edit-form {
             display: none;
@@ -83,6 +88,10 @@
         .edit-buttons {
             display: flex;
             gap: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
         }
     </style>
     <script>
