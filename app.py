@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -10,16 +10,17 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     task = db.Column(db.String(200), nullable=False)
     complete = db.Column(db.Boolean, default=False)
+    position = db.Column(db.Integer, nullable=False, default=0)
 
 @app.route('/')
 def index():
-    todos = Todo.query.all()
+    todos = Todo.query.order_by(Todo.position).all()
     return render_template('index.html', todos=todos)
 
 @app.route('/add', methods=['POST'])
 def add():
     task = request.form.get('task')
-    new_task = Todo(task=task)
+    new_task = Todo(task=task, position=Todo.query.count())
     db.session.add(new_task)
     db.session.commit()
     return redirect(url_for('index'))
@@ -46,7 +47,20 @@ def edit(todo_id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/update_order', methods=['POST'])
+def update_order():
+    order = request.json.get('order')
+    for index, task_id in enumerate(order):
+        task = Todo.query.get(task_id)
+        task.position = index
+    db.session.commit()
+    return '', 204
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        # Ensure each task has a unique position
+        for index, task in enumerate(Todo.query.order_by(Todo.id).all()):
+            task.position = index
+        db.session.commit()
     app.run(debug=True, port=8080)

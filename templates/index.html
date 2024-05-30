@@ -94,6 +94,7 @@
             border-radius: 5px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script>
         function showEditForm(id) {
             document.getElementById('task-' + id).style.display = 'none';
@@ -104,6 +105,22 @@
             document.getElementById('task-' + id).style.display = 'block';
             document.getElementById('edit-form-' + id).style.display = 'none';
         }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const sortable = new Sortable(document.getElementById('todo-list'), {
+                onEnd: function (evt) {
+                    const order = sortable.toArray();
+                    fetch('/update_order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ order: order })
+                    });
+                },
+                dataIdAttr: 'data-id'
+            });
+        });
     </script>
 </head>
 <body>
@@ -112,9 +129,9 @@
         <input type="text" name="task" placeholder="Enter new task" required>
         <button type="submit">Add</button>
     </form>
-    <ul>
+    <ul id="todo-list">
         {% for todo in todos %}
-            <li>
+            <li data-id="{{ todo.id }}">
                 <span id="task-{{ todo.id }}" style="text-decoration: {{ 'line-through' if todo.complete else 'none' }}">{{ todo.task }}</span>
                 <form id="edit-form-{{ todo.id }}" class="edit-form" action="/edit/{{ todo.id }}" method="POST">
                     <input type="text" name="task" value="{{ todo.task }}" required>
