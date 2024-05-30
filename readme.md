@@ -70,6 +70,32 @@ Tasks can be reordered using drag-and-drop functionality. The order is saved aut
 - `/edit/<int:todo_id>`: Route to edit a task (POST).
 - `/update_order`: Route to update the order of tasks (POST).
 
+## Executable Release
+
+We are excited to announce the release of the Flask To-Do List Application v1.0 as an executable file! This allows you to run the application without needing to install Python or any dependencies.
+
+### Features:
+
+- **Add Tasks**: Quickly add new tasks to your to-do list.
+- **Edit Tasks**: Modify existing tasks to keep your list up-to-date.
+- **Mark as Complete**: Easily mark tasks as complete or incomplete.
+- **Delete Tasks**: Remove tasks that are no longer needed.
+- **Reorder Tasks**: Organize your tasks by dragging and dropping them into your desired order.
+
+### How to Use:
+
+1. Download the executable file from the link below.
+2. Run the executable file to start the application.
+3. Open your web browser and go to `http://127.0.0.1:8080`.
+4. Manage your tasks directly from the browser.
+
+### System Requirements:
+
+- Windows 7 or higher
+- No need to install Python or any dependencies
+
+**Download the executable:** [Link to the executable]
+
 ## Acknowledgements
 
 This project uses the following libraries and frameworks:
