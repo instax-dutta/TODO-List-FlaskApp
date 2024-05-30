@@ -1,98 +1,83 @@
-# To-Do List Web Application
+# Flask To-Do List Application
 
-A simple, dark-themed To-Do List web application built with Python and Flask. This application allows users to add, edit, complete, and delete tasks. The tasks are stored in an SQLite database.
+This is a simple to-do list web application built using Flask and SQLAlchemy. Users can add, edit, delete, complete, and reorder tasks.
 
 ## Features
 
-- Dark mode user interface
 - Add new tasks
 - Edit existing tasks
 - Mark tasks as complete or incomplete
 - Delete tasks
-- Animated buttons and a visually appealing list
+- Reorder tasks using drag-and-drop
 
-## Prerequisites
+## Requirements
 
-- Python 3.x
+- Python 3.6+
 - Flask
 - Flask-SQLAlchemy
+- Sortable.js (included in the HTML)
 
-## Getting Started
-
-### Installation
+## Setup
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/wizard-boy-yt/TO-DO-LIST-app.git
-    cd TODO-List-FlaskApp
-    ```
+
+```bash
+git clone https://github.com/yourusername/flask-todo-app.git
+cd flask-todo-app
+```
 
 2. Create a virtual environment and activate it:
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
 
 3. Install the required packages:
-    ```bash
-    pip install Flask Flask-SQLAlchemy
-    ```
 
-### Running the Application
-
-1. Ensure you are in the project directory and the virtual environment is activated.
-
-2. Run the application:
-    ```bash
-    python app.py
-    ```
-
-3. Open your web browser and navigate to:
-    ```
-    http://127.0.0.1:8080
-    ```
-
-## Project Structure
-
-```
-todo-list-flask-app/
-│
-├── app.py
-├── templates/
-│   └── index.html
-├── venv/
-│   └── ... (virtual environment files)
-├── README.md
-└── requirements.txt
+```bash
+pip install Flask Flask-SQLAlchemy
 ```
 
-- `app.py`: The main Flask application file containing route definitions and database models.
-- `templates/index.html`: The HTML template for rendering the To-Do List.
-- `venv/`: The virtual environment directory.
-- `README.md`: This README file.
-- `requirements.txt`: File for specifying the Python dependencies.
+4. Run the application:
+
+```bash
+python app.py
+```
+
+5. Open your web browser and go to `http://127.0.0.1:8080`.
+
+## File Structure
+
+- `app.py`: The main Flask application file.
+- `templates/index.html`: The HTML template for the to-do list.
+- `static/`: Directory for static files (e.g., CSS, JavaScript).
+
+## Database
+
+The application uses SQLite for the database. The database file `todos.db` will be created automatically when you run the application.
+
+## Updating Task Order
+
+Tasks can be reordered using drag-and-drop functionality. The order is saved automatically when tasks are reordered.
 
 ## Routes
 
-- `/`: Displays the to-do list.
-- `/add`: Adds a new to-do item.
-- `/update/<int:todo_id>`: Toggles the completion status of a to-do item.
-- `/delete/<int:todo_id>`: Deletes a to-do item.
-- `/edit/<int:todo_id>`: Edits an existing to-do item.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- `/`: The main page displaying the to-do list.
+- `/add`: Route to add a new task (POST).
+- `/update/<int:todo_id>`: Route to mark a task as complete/incomplete (GET).
+- `/delete/<int:todo_id>`: Route to delete a task (GET).
+- `/edit/<int:todo_id>`: Route to edit a task (POST).
+- `/update_order`: Route to update the order of tasks (POST).
 
 ## Acknowledgements
 
+This project uses the following libraries and frameworks:
+
 - [Flask](https://flask.palletsprojects.com/)
 - [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/)
+- [Sortable.js](https://sortablejs.github.io/Sortable/)
 
-## Contributing
+## License
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## Contact
-
-- GitHub: [Soumyadeep](https://github.com/wizard-boy-yt)
+This project is licensed under the MIT License.
